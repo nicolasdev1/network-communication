@@ -58,8 +58,8 @@ public class RoomViewController {
 
                         chatLog.appendText(newMsg.getName() + " : " + newMsg.getMessage() + "\n");
                     }
-                } catch(Exception E) {
-                    E.printStackTrace();
+                } catch(Exception exception) {
+                    exception.printStackTrace();
                 }
 
             });
@@ -76,30 +76,27 @@ public class RoomViewController {
         try {
             String msg = myMessage.getText();
 
-            //String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg + "'" + "}";
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("name", Data.name);
+            jsonObject.put("message", msg);
 
-            JSONObject js = new JSONObject();
-            js.put("name", Data.name);
-            js.put("message", msg);
+            String jsonString = jsonObject.toJSONString();
 
-            String json = js.toJSONString();
+            System.out.println(jsonString);
 
-
-            System.out.println(json);
-
-            dataOutputStream.writeUTF(json);
+            dataOutputStream.writeUTF(jsonString);
             myMessage.setText("");
             myMessage.requestFocus();
-
-        } catch(IOException E) {
-            E.printStackTrace();
+        } catch(IOException exception) {
+            exception.printStackTrace();
         }
 
     }
 
-    public void buttonPressed(KeyEvent e) {
-        if(e.getCode().toString().equals("ENTER"))
-        {
+    public void buttonPressed(KeyEvent event) {
+        Boolean enterWasClicked = event.getCode().toString().equals("ENTER");
+
+        if (enterWasClicked) {
             onClickSend();
         }
     }

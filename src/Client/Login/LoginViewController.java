@@ -1,6 +1,5 @@
 package Client.Login;
 
-
 import Client.Model.Data;
 import Client.Room.RoomViewController;
 import javafx.fxml.FXML;
@@ -22,29 +21,24 @@ public class LoginViewController {
     @FXML
     public TextField name;
 
-    @FXML
     public String server_port;
 
     public void onClick() throws IOException {
-        System.out.println("Clicked");
         Data.ip = server_ip.getText();
         this.server_port = port.getText();
         Data.name = name.getText();
         Data.port = Integer.parseInt(server_port);
 
-
         Stage stage;
         stage = (Stage) server_ip.getScene().getWindow();
-        Parent root = FXMLLoader.load(LoginViewController.class.getResource("Room/RoomView.fxml"));
-        stage.setScene(new Scene(root, 600, 400));
+        Parent root = FXMLLoader.load(LoginViewController.class.getResource("../Room/RoomView.fxml"));
+        stage.setScene(new Scene(root));
         stage.setTitle(Data.name);
-        stage.setOnCloseRequest(e -> {
-            //e.consume();
-            RoomViewController.thread.stop();
+        stage.setOnCloseRequest(event -> {
+            RoomViewController.thread.interrupt();
             System.exit(0);
         });
         stage.setResizable(false);
-
         stage.show();
     }
 }

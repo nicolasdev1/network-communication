@@ -15,16 +15,14 @@ public class Server {
     DataInputStream dataInputStream;
 
     Server() {
-
-        System.out.println("Server");
-
         String name;
         Socket client;
 
         clients = new ArrayList<Client>();
-
         try {
             ServerSocket servSock = new ServerSocket(10001);
+
+            System.out.println("Server is running in port 10001!");
 
             while (true) {
                 client = servSock.accept();

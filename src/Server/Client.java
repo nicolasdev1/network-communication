@@ -30,7 +30,7 @@ public class Client {
                         edos.writeUTF(message);
                     }
                 }
-            } catch (IOException E) {
+            } catch (IOException exception) {
                 try {
                     dataInputStream.close();
                     dataOutputStream.close();

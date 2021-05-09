@@ -26,6 +26,7 @@
                 onAction="#onClickSend"
                 onKeyPressed="#buttonPressed"
                 prefHeight="47.0" prefWidth="52.0"
-                text="Enviar" />
+                text="Enviar"
+        />
     </children>
 </Pane>
